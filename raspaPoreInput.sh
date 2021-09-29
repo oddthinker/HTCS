@@ -513,7 +513,7 @@ then
 				
 				# Read A/B/C Length Of Cif 
 				zeoFilenumber=$(ls "$location"/"$zeoDataFile"/"$cifName"/ProbeOccupiableVolume/ |wc -l)
-				if [ "$zeoFilenumber" -eq 6 ]
+				if [ "$zeoFilenumber" -eq 3 ]
 				then
 					UnitCell_ABCABG
 					newUnitCell_ABC

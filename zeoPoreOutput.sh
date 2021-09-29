@@ -36,7 +36,7 @@ do
 		# Pore Diameter
 		cd PoreDiameter
 		filescount1=$(ls |wc -l)
-		if [ "$filescount1" -eq 6 ]
+		if [ "$filescount1" -eq 3 ]
 		then
 			zeocif="$cifName"
 			zeoGCD=$(cat "$cifName".res |awk '{print $2}')
@@ -44,46 +44,46 @@ do
 			zeoLCD=$(cat "$cifName".res |awk '{print $4}')
 		else
 			zeocif="$cifName"
-			zeoGCD="-"
-			zeoPLD="-"
-			zeoLCD="-"
+			zeoGCD="null"
+			zeoPLD="null"
+			zeoLCD="null"
 		fi
 		cd ..
 		# Specific SurfaceArea
 		cd SurfaceAreaHe
 		filescount2=$(ls |wc -l)
-		if [ "$filescount2" -eq 6 ]
+		if [ "$filescount2" -eq 3 ]
 		then
 			zeoDensity=$(cat "$cifName".sa |grep @ |awk '{print $6}')
 			zeoASA_m2cm3He=$(cat "$cifName".sa |grep @ |awk '{print $10}')
 			zeoASA_m2gHe=$(cat "$cifName".sa |grep @ |awk '{print $12}')
 		else
-			zeoDensity="-"
-			zeoASA_m2cm3He="-"
-			zeoASA_m2gHe="-"
+			zeoDensity="null"
+			zeoASA_m2cm3He="null"
+			zeoASA_m2gHe="null"
 		fi
 		cd ../
 		
 		cd SurfaceAreaN2
 		filescount2=$(ls |wc -l)
-		if [ "$filescount2" -eq 6 ]
+		if [ "$filescount2" -eq 3 ]
 		then
 		        zeoASA_m2cm3N2=$(cat "$cifName".sa |grep @ |awk '{print $10}')
 		        zeoASA_m2gN2=$(cat "$cifName".sa |grep @ |awk '{print $12}')
 		else
-		        zeoASA_m2cm3N2="-"
-		        zeoASA_m2gN2="-"
+		        zeoASA_m2cm3N2="null"
+		        zeoASA_m2gN2="null"
 		fi
 		cd ../
 		
 		# Probe-Occupiable Volume
 		cd ProbeOccupiableVolume
 		filescount3=$(ls |wc -l)
-		if [ "$filescount3" -eq 6 ]
+		if [ "$filescount3" -eq 3 ]
 		then
 			zeoPOAV_cm3g=$(cat "$cifName".volpo |grep @ |awk '{print $12}')
 		else
-			zeoPOAV_cm3g="-"
+			zeoPOAV_cm3g="null"
 		fi
 		cd ../
 		echo "$zeocif,$zeoGCD,$zeoPLD,$zeoLCD,$zeoDensity,$zeoASA_m2cm3He,$zeoASA_m2gHe,$zeoASA_m2cm3N2,$zeoASA_m2gN2,$zeoPOAV_cm3g" &>> "$location"/"$resultDataFile"/"$cifNumber"Materials_PoreDiameter-SurfaceArea-OccupiableVolume.csv

@@ -263,8 +263,8 @@ done
 }
 
 # myjobs
-MyJobsZeoPD(){
-cat > myjobsPD.sh <<!
+MyJobsZeoPore(){
+cat > myjobsPore.sh <<!
 #!/bin/bash
 #PBS -S /bin/bash
 #PBS -q batch
@@ -278,68 +278,31 @@ cd \${PBS_O_WORKDIR}
 
 export PATH=$zeopath:\$PATH
 
-network -r $location/$ccdcInformation/materials.rad -mass $location/$ccdcInformation/materials.mass -ha -resex $cifName.cif &>> myout
-
-!
-}
-
-MyJobsZeoHeSA(){
-cat > myjobsHeSA.sh <<!
-#!/bin/bash
-#PBS -S /bin/bash
-#PBS -q batch
-#PBS -l nodes=$pbsNodesName:ppn=1
-#PBS -N HTCS_zeo++
-#PBS -o my.out
-#PBS -e my.err
-#PBS -V
-
-cd \${PBS_O_WORKDIR}
-
-export PATH=$zeopath:\$PATH
-
+mkdir PoreDiameter
+cp "$cifName".cif PoreDiameter
+cd PoreDiameter
+network -r $location/$ccdcInformation/materials.rad -mass $location/$ccdcInformation/materials.mass -ha -resex $cifName.cif &>> myout			
+cd ../
+				
+###### Specific SurfaceArea
+mkdir SurfaceAreaHe
+cp "$cifName".cif SurfaceAreaHe
+cd SurfaceAreaHe
 network -r $location/$ccdcInformation/materials.rad -mass $location/$ccdcInformation/materials.mass -ha -sa 1.3 1.3 50000 $cifName.cif &>> myout 
+cd ../
 
-!
-}
-
-MyJobsZeoN2SA(){
-cat > myjobsN2SA.sh <<!
-#!/bin/bash
-#PBS -S /bin/bash
-#PBS -q batch
-#PBS -l nodes=$pbsNodesName:ppn=1
-#PBS -N HTCS_zeo++
-#PBS -o my.out
-#PBS -e my.err
-#PBS -V
-
-cd \${PBS_O_WORKDIR}
-
-export PATH=$zeopath:\$PATH
-
-network -r $location/$ccdcInformation/materials.rad -mass $location/$ccdcInformation/materials.mass -ha -sa 1.82 1.82 50000 $cifName.cif &>> myout
-
-!
-}
-
-MyJobsZeoPV(){
-cat > myjobsPV.sh <<!
-#!/bin/bash
-#PBS -S /bin/bash
-#PBS -q batch
-#PBS -l nodes=$pbsNodesName:ppn=1
-#PBS -N HTCS_zeo++
-#PBS -o my.out
-#PBS -e my.err
-#PBS -V
-
-cd \${PBS_O_WORKDIR}
-
-export PATH=$zeopath:\$PATH
-
+mkdir SurfaceAreaN2
+cp "$cifName".cif SurfaceAreaN2
+cd SurfaceAreaN2
+network -r $location/$ccdcInformation/materials.rad -mass $location/$ccdcInformation/materials.mass -ha -sa 1.82 1.82 50000 $cifName.cif &>> myout		
+cd ../
+				
+###### Probe-Occupiable Volume
+mkdir ProbeOccupiableVolume
+cp "$cifName".cif ProbeOccupiableVolume
+cd ProbeOccupiableVolume
 network -r $location/$ccdcInformation/materials.rad -mass $location/$ccdcInformation/materials.mass -ha -volpo 0.0 0.0 50000 $cifName.cif &>> myout
-
+cd ../
 !
 }
 
@@ -391,51 +354,34 @@ then
 				PBSNodes_queueNumbers
 				
 ##### Pore Diameter
-				mkdir PoreDiameter
-				cp "$cifName".cif PoreDiameter
-				cd PoreDiameter
-				
-				MyJobsZeoPD	
-				
-				#nohup network -r "$location"/"$ccdcInformation"/materials.rad -mass "$location"/"$ccdcInformation"/materials.mass -ha -resex "$cifName".cif &>> myout &
-
-				qsub myjobsPD.sh				
-				cd ../
+				#mkdir PoreDiameter
+				#cp "$cifName".cif PoreDiameter
+				#cd PoreDiameter
+				#nohup network -r "$location"/"$ccdcInformation"/materials.rad -mass "$location"/"$ccdcInformation"/materials.mass -ha -resex "$cifName".cif &>> myout &				
+				#cd ../
 				
 ###### Specific SurfaceArea
-				mkdir SurfaceAreaHe
-				cp "$cifName".cif SurfaceAreaHe
-				cd SurfaceAreaHe
-				
-				MyJobsZeoHeSA
-				
+				#mkdir SurfaceAreaHe
+				#cp "$cifName".cif SurfaceAreaHe
+				#cd SurfaceAreaHe
 				#nohup network -r "$location"/"$ccdcInformation"/materials.rad -mass "$location"/"$ccdcInformation"/materials.mass -ha -sa 1.3 1.3 50000 "$cifName".cif &>> myout &
-
-				qsub myjobsHeSA.sh
-				cd ../
+				#cd ../
 				
-				mkdir SurfaceAreaN2
-				cp "$cifName".cif SurfaceAreaN2
-				cd SurfaceAreaN2
-				
-				MyJobsZeoN2SA
-				
-				#nohup network -r "$location"/"$ccdcInformation"/materials.rad -mass "$location"/"$ccdcInformation"/materials.mass -ha -sa 1.82 1.82 50000 "$cifName".cif &>> myout &
-				
-				qsub myjobsN2SA.sh				
-				cd ../
+				#mkdir SurfaceAreaN2
+				#cp "$cifName".cif SurfaceAreaN2
+				#cd SurfaceAreaN2
+				#nohup network -r "$location"/"$ccdcInformation"/materials.rad -mass "$location"/"$ccdcInformation"/materials.mass -ha -sa 1.82 1.82 50000 "$cifName".cif &>> myout &				
+				#cd ../
 				
 ###### Probe-Occupiable Volume
-				mkdir ProbeOccupiableVolume
-				cp "$cifName".cif ProbeOccupiableVolume
-				cd ProbeOccupiableVolume
+				#mkdir ProbeOccupiableVolume
+				#cp "$cifName".cif ProbeOccupiableVolume
+				#cd ProbeOccupiableVolume
+				#nohup network -r "$location"/"$ccdcInformation"/materials.rad -mass "$location"/"$ccdcInformation"/materials.mass -ha -volpo 0.0 0.0 50000 "$cifName".cif &>> myout &				
+				#cd ../	
 				
-				MyJobsZeoPV
-				
-				#nohup network -r "$location"/"$ccdcInformation"/materials.rad -mass "$location"/"$ccdcInformation"/materials.mass -ha -volpo 0.0 0.0 50000 "$cifName".cif &>> myout &
-				
-				qsub myjobsPV.sh								
-				cd ../	
+				MyJobsZeoPore
+				qsub myjobsPore.sh
 				
 				echo "$i $cifName" &>> "$location"/zeoPoreInput.log
 				((i++))
