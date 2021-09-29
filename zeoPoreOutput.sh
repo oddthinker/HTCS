@@ -1,6 +1,8 @@
 #!/bin/bash
 ### Date: 2021-08
 ### Author: Junpeng Yuan
+### Address: Zhengzhou China
+### QQ: 1931013132
 ### Function: The pore structure (e.g. pore diameter, surface area, pore volume) is obtained
 ### Usage: nohup sh zeoPoreOutput.sh &>> mylogzeoPoreOutput &
 

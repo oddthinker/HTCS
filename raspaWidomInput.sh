@@ -1,6 +1,8 @@
 #!/bin/bash
 ### Date: 2021-08
 ### Author: Junpeng Yuan
+### Address: Zhengzhou China
+### QQ: 1931013132
 ### Function: The AdsorptionHeat is calculated by using raspa
 ### Usage: nohup sh raspaWidomInput.sh &>> mylograspaWidomInput &
 
@@ -8,7 +10,7 @@
 # user
 user=$(whoami)
 # userCores
-userCores=400
+userCores=200
 # raspaDataFile
 raspaDataFile=raspadata
 # LJforcefieldFolder
@@ -16,7 +18,7 @@ LJforcefield=myDFFUFF
 # moleculesFolder
 moleculestructure=myTraPPE
 # raspapath
-raspapath=/home/jpyuan/softwares/RASPA2-master
+raspapath=/home/jpy2021/softwares/RASPA2-master
 # molecules is calculated
 moleculename=CH4
 

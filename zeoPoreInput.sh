@@ -1,6 +1,8 @@
 #!/bin/bash
 ### Date: 2021-08
 ### Author: Junpeng Yuan
+### Address: Zhengzhou China
+### QQ: 1931013132
 ### Function: The pore structure (e.g. pore diameter, surface area, pore volume) is calculated by using Zeo++
 ### Usage: nohup sh zeoPoreInput.sh &>> mylogzeoPoreInput &
 
@@ -8,7 +10,7 @@
 # user
 user=$(whoami)
 # userCores
-userCores=400
+userCores=200
 # zeoDataFile
 zeoDataFile=zeodata
 # inputStructureFile
@@ -16,7 +18,7 @@ inputStructureFile=inputstructure
 # CCDCRadiusMass
 ccdcInformation=ccdcRadiusMass
 # zeopath
-zeopath=/home/jpyuan/softwares/zeo++-0.3
+zeopath=/home/jpy2021/softwares/zeo++-0.3
 
 #-----Function-----
 materialsRadMass(){
