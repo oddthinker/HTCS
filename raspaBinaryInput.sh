@@ -167,7 +167,7 @@ cat > myjobsBinary.sh <<!
 #!/bin/bash
 #PBS -S /bin/bash
 #PBS -q batch
-#PBS -l nodes=$pbsNodesName:ppn=1
+#PBS -l nodes=1:ppn=1
 #PBS -N HTCS_raspa
 #PBS -o my.out
 #PBS -e my.err
@@ -201,10 +201,10 @@ then
 		if [ "$i" -le "$cifnumber" ]
 		then
 			# what is the cpu utilization
-			PBSNodes_userCores_Utilization
+			#PBSNodes_userCores_Utilization
 			#if      [ $cpu_rate -le 98 ]
-			if [ "$pbsnodes_rate" -gt 0 -a "$usercores_rate" -le "$userCores" ]
-			then
+			#if [ "$pbsnodes_rate" -gt 0 -a "$usercores_rate" -le "$userCores" ]
+			#then
 				cd "$location"/"$raspaDataFile"/
 				cifName=$(ls |sort -n |head -n $i |tail -n 1 )
 				cd "$cifName"
@@ -227,16 +227,16 @@ then
 				fi
 				cd Binary"$moleculemolFraction1""$moleculename1""$moleculemolFraction2""$moleculename2"_"$simulationtemperature"K"$simulationpressure"Pa
 				
-				PBSNodes_queueNumbers
-				PBSNodes_userCores_Utilization
+				#PBSNodes_queueNumbers
+				#PBSNodes_userCores_Utilization
 				
 				# Make a simulation
 				#export RASPA_DIR=${HOME}/softs/RASPA2/
 				#nohup simulate &>> myout &
-				((usercores_rate++))
+				#((usercores_rate++))
 				
-				if [ "$pbsnodes_rate" -gt 0 -a "$usercores_rate" -le "$userCores" ]
-				then
+				#if [ "$pbsnodes_rate" -gt 0 -a "$usercores_rate" -le "$userCores" ]
+				#then
 					# Create simulation file
 					SimulationInput	
 					# Create MyJobs File	
@@ -245,10 +245,10 @@ then
 					qsub myjobsBinary.sh						
 					echo "$i $cifName" &>> "$location"/raspaBinary"$moleculemolFraction1""$moleculename1""$moleculemolFraction2""$moleculename2"_"$simulationtemperature"K"$simulationpressure"PaInput.log
 					((i++))
-				fi
-			else
-				sleep 3
-			fi
+				#fi
+			#else
+			#	sleep 3
+			#fi
 		else
 			echo "submitFinish   Date: $(date '+%Y-%m-%d-%T')" &>> "$location"/raspaBinary"$moleculemolFraction1""$moleculename1""$moleculemolFraction2""$moleculename2"_"$simulationtemperature"K"$simulationpressure"PaInput.log
 			break

@@ -423,7 +423,7 @@ cat > myjobsPorosity.sh <<!
 #!/bin/bash
 #PBS -S /bin/bash
 #PBS -q batch
-#PBS -l nodes=$pbsNodesName:ppn=1
+#PBS -l nodes=1:ppn=1
 #PBS -N HTCS_raspa
 #PBS -o my.out
 #PBS -e my.err
@@ -490,10 +490,10 @@ then
 		then
 		
 			# What Is Cpu Utilization 
-			PBSNodes_userCores_Utilization
+			#PBSNodes_userCores_Utilization
 			#if      [ $cpu_rate -le 98 ]
-			if [ "$pbsnodes_rate" -gt 0 -a "$usercores_rate" -le "$userCores" ]
-			then
+			#if [ "$pbsnodes_rate" -gt 0 -a "$usercores_rate" -le "$userCores" ]
+			#then
 				cd "$location"/"$inputStructureFile"/
 				cifName=$(find "$location"/"$inputStructureFile"/ -name "*cif" |sort -n |head -n $i |tail -n 1 |awk -F '/' '{print $NF}' |cut -d . -f 1)
 				cd "$location"/"$raspaDataFile"/
@@ -549,16 +549,16 @@ then
 				
 				cp "$cifName".cif "$raspapath"/share/raspa/structures/cif/
 
-				PBSNodes_queueNumbers				
-				PBSNodes_userCores_Utilization				
+				#PBSNodes_queueNumbers				
+				#PBSNodes_userCores_Utilization				
 				
 				# Make A Simulation 
 				#export RASPA_DIR=${HOME}/softs/RASPA2/
 				#nohup simulate &>> myout &
-				((usercores_rate++))
+				#((usercores_rate++))
 				
-				if [ "$pbsnodes_rate" -gt 0 -a "$usercores_rate" -le "$userCores" ]
-				then
+				#if [ "$pbsnodes_rate" -gt 0 -a "$usercores_rate" -le "$userCores" ]
+				#then
 					# Create Simulation File
 					simulationInput
 					# Create MyJobs File				
@@ -567,10 +567,10 @@ then
 					qsub myjobsPorosity.sh				
 					echo "$i $cifName" &>> "$location"/raspaPorosityInput.log
 					((i++))
-				fi
-			else
-				sleep 3
-			fi
+				#fi
+			#else
+			#	sleep 3
+			#fi
 		else
 			echo "submitFinish   Date: $(date '+%Y-%m-%d-%T')" &>> "$location"/raspaPorosityInput.log
 			break

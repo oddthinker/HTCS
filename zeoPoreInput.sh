@@ -270,7 +270,7 @@ cat > myjobsPore.sh <<!
 #!/bin/bash
 #PBS -S /bin/bash
 #PBS -q batch
-#PBS -l nodes=$pbsNodesName:ppn=1
+#PBS -l nodes=1:ppn=1
 #PBS -N HTCS_zeo++
 #PBS -o my.out
 #PBS -e my.err
@@ -342,10 +342,10 @@ then
 		then
 		
 			#CPU_Utilization
-			PBSNodes_userCores_Utilization
+			#PBSNodes_userCores_Utilization
 			#if      [ "$cpu_rate" -le 98 ]
-			if [ "$pbsnodes_rate" -gt 0 -a "$usercores_rate" -le "$userCores" ]
-			then
+			#if [ "$pbsnodes_rate" -gt 0 -a "$usercores_rate" -le "$userCores" ]
+			#then
 				cd "$location"/"$inputStructureFile"/
 				cifName=$(find "$location"/"$inputStructureFile"/ -name "*cif" |sort -n |head -n $i |tail -n 1 |awk -F '/' '{print $NF}' |cut -d "." -f 1)
 				cd "$location"/"$zeoDataFile"/
@@ -353,7 +353,7 @@ then
 				cp "$location"/"$inputStructureFile"/"$cifName".cif "$cifName"
 				cd "$cifName"
 				
-				PBSNodes_queueNumbers
+				#PBSNodes_queueNumbers
 				
 ##### Pore Diameter
 				#mkdir PoreDiameter
@@ -387,9 +387,9 @@ then
 				
 				echo "$i $cifName" &>> "$location"/zeoPoreInput.log
 				((i++))
-			else
-				sleep 3
-			fi
+			#else
+			#	sleep 3
+			#fi
 		else
 		
 # Time to submit the last task
