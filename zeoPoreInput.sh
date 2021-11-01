@@ -2,7 +2,8 @@
 ### Date: 2021-08
 ### Author: Junpeng Yuan
 ### Address: Zhengzhou China
-### QQ: 1931013132
+### Email: junpeng_yuan@163.com
+### QQ: 1003390112
 ### Function: The pore structure (e.g. pore diameter, surface area, pore volume) is calculated by using Zeo++
 ### Usage: nohup sh zeoPoreInput.sh &>> mylogzeoPoreInput &
 

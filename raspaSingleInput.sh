@@ -2,7 +2,8 @@
 ### Date: 2021-08
 ### Author: Junpeng Yuan
 ### Address: Zhengzhou China
-### QQ: 1931013132
+### Email: junpeng_yuan@163.com
+### QQ: 1003390112
 ### Function: The SingleAdsorption is calculated by using raspa
 ### Usage: nohup sh raspaSingleInput.sh &>> mylograspaSingleInput &
 
