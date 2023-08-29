@@ -4,7 +4,7 @@
 ### Address: Zhengzhou China
 ### Email: junpeng_yuan@163.com
 ### QQ: 1003390112
-### Function: The porosity is calculated by using raspa
+### Function: The BinaryAdsorption is calculated by using raspa
 ### Usage: nohup sh raspaBinaryInput.sh &>> mylograspaBinaryInput &
 
 #-----UserDefined-----
